@@ -1,0 +1,29 @@
+{
+  "name": "meshblu-blink1",
+  "version": "1.0.0",
+  "description": "Meshblu Blink(1) connector",
+  "main": "index.js",
+  "scripts": {
+    "start": "bin/meshblu-blink1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/octoblu/meshblu-blink1.git"
+  },
+  "keywords": [
+    "meshblu",
+    "gateblu",
+    "blink1"
+  ],
+  "author": "Octoblu, Inc. <sqrt@octoblu.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/octoblu/meshblu-blink1/issues"
+  },
+  "homepage": "https://github.com/octoblu/meshblu-blink1",
+  "dependencies": {
+    "node-blink1": "^0.1.3",
+    "tinycolor2": "^1.0.0"
+  }
+}
