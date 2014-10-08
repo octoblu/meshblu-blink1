@@ -1,12 +1,16 @@
 var Plugin = require('./index').Plugin;
 var skynet = require('skynet');
+var config = require('./meshblu.json');
 
 var conx = skynet.createConnection({
   server: 'meshblu.octoblu.com',
   port: '80',
-  uuid: '659f9a31-4e56-11e4-9133-338b9914afd1',
-  token: '0000f1joywpyl23xr68chct6pbucv7vi'
+  uuid: config.uuid,
+  token: config.token
 });
+
+conx.on('notReady', console.error);
+conx.on('error', console.error);
 
 var plugin = new Plugin();
 conx.on('message', plugin.onMessage);
