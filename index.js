@@ -1,7 +1,12 @@
+'use strict';
+
 var Blink1    = require('node-blink1');
 var tinycolor = require('tinycolor2');
+var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-function Plugin(messager, options){
+function Plugin(){
+  this.blink1 = new Blink1();
+  this.onMessage = __bind(this.onMessage, this);
   return this;
 }
 
@@ -15,9 +20,9 @@ var parseColor = function(on, color){
   }
 
   return tinycolor(decodeURIComponent(color));
-}
+};
 
-Plugin.prototype.onMessage = function(data, cb){
+Plugin.prototype.onMessage = function(data){
   try{
     var payload, color, rgb;
     payload = data.payload || data.message || {};
@@ -25,10 +30,14 @@ Plugin.prototype.onMessage = function(data, cb){
     color = parseColor(payload.on, payload.color);
     rgb = tinycolor(color).toRgb();
 
-    new Blink1().fadeToRGB(0, rgb.r, rgb.g, rgb.b);
+    this.blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);
   } catch (error) {
-    console.error(error.message);
-    console.error(error.stack);
+    if(error.message){
+      console.error(error.message);
+      console.error(error.stack);
+    } else {
+      console.error(error);
+    }
     throw error;
   }
 };
