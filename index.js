@@ -2,13 +2,8 @@
 
 var Blink1    = require('node-blink1');
 var tinycolor = require('tinycolor2');
-var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-function Plugin(){
-  this.blink1 = new Blink1();
-  this.onMessage = __bind(this.onMessage, this);
-  return this;
-}
+function Plugin(){}
 
 var parseColor = function(on, color){
   if(!on){
@@ -24,13 +19,15 @@ var parseColor = function(on, color){
 
 Plugin.prototype.onMessage = function(data){
   try{
-    var payload, color, rgb;
+    var payload, color, rgb, blink1;
     payload = data.payload || data.message || {};
 
     color = parseColor(payload.on, payload.color);
     rgb = tinycolor(color).toRgb();
 
-    this.blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);
+    blink1 = new Blink1();
+    blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);
+    blink1.close();
   } catch (error) {
     if(error.message){
       console.error(error.message);
