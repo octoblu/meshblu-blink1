@@ -3,7 +3,23 @@
 var Blink1    = require('node-blink1');
 var tinycolor = require('tinycolor2');
 
-function Plugin(){}
+var MESSAGE_SCHEMA = {
+  type: 'object',
+  properties: {
+    on: {
+      type: 'boolean',
+      required: true
+    },
+    color: {
+      type: 'string',
+      required: true
+    }
+  }
+};
+
+function Plugin(){
+  this.messageSchema = MESSAGE_SCHEMA;
+}
 
 var parseColor = function(on, color){
   if(!on){
@@ -39,21 +55,7 @@ Plugin.prototype.onMessage = function(data){
   }
 };
 
-var messageSchema = {
-  type: 'object',
-  properties: {
-    on: {
-      type: 'boolean',
-      required: true
-    },
-    color: {
-      type: 'string',
-      required: true
-    }
-  }
-};
-
 module.exports = {
   Plugin: Plugin,
-  messageSchema: messageSchema
+  messageSchema: MESSAGE_SCHEMA
 };
