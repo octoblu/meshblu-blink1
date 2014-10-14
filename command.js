@@ -6,10 +6,10 @@ var config        = require('./meshblu.json');
 var plugin        = new Plugin();
 
 var conx = skynet.createConnection({
-  server: process.env.MESHBLU_SERVER || 'meshblu.octoblu.com',
-  port:   process.env.MESHBLU_PORT   || '80',
-  uuid: config.uuid,
-  token: config.token
+  server: config.server,
+  port:   config.port,
+  uuid:   config.uuid,
+  token:  config.token
 });
 
 conx.on('ready', function(){
