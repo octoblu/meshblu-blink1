@@ -19,6 +19,8 @@ var MESSAGE_SCHEMA = {
 
 function Plugin(){
   this.messageSchema = MESSAGE_SCHEMA;
+  this.optionsSchema = {};
+  this.options = {};
 }
 
 var parseColor = function(on, color){

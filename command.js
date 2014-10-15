@@ -16,7 +16,9 @@ conx.on('ready', function(){
   conx.update({
     uuid  : config.uuid,
     token : config.token,
-    messageSchema : plugin.messageSchema
+    messageSchema : plugin.messageSchema,
+    optionsSchema : plugin.optionsSchema,
+    options       : plugin.options
   }, function(data){
     console.log('updated', data.eventCode, data);
   });
