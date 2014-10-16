@@ -1,6 +1,7 @@
 'use strict';
-
-var Blink1    = require('node-blink1');
+var util = require('util');
+var EventEmitter = require('events').EventEmitter;
+var Blink1 = require('node-blink1');
 var tinycolor = require('tinycolor2');
 
 var MESSAGE_SCHEMA = {
@@ -17,11 +18,15 @@ var MESSAGE_SCHEMA = {
   }
 };
 
+var OPTIONS_SCHEMA = {};
+
 function Plugin(){
-  this.messageSchema = MESSAGE_SCHEMA;
-  this.optionsSchema = {};
   this.options = {};
+  this.messageSchema = MESSAGE_SCHEMA;
+  this.optionsSchema = OPTIONS_SCHEMA;
+  return this;
 }
+util.inherits(Plugin, EventEmitter);
 
 var parseColor = function(on, color){
   if(!on){
@@ -35,29 +40,24 @@ var parseColor = function(on, color){
   return tinycolor(decodeURIComponent(color));
 };
 
-Plugin.prototype.onMessage = function(data){
-  try{
-    var payload, color, rgb, blink1;
-    payload = data.payload || data.message || {};
+Plugin.prototype.onMessage = function(message){
+  var payload, color, rgb, blink1;
+  payload = message.payload;
 
-    color = parseColor(payload.on, payload.color);
-    rgb = tinycolor(color).toRgb();
+  color = parseColor(payload.on, payload.color);
+  rgb = tinycolor(color).toRgb();
 
-    blink1 = new Blink1();
-    blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);
-    blink1.close();
-  } catch (error) {
-    if(error.message){
-      console.error(error.message);
-      console.error(error.stack);
-    } else {
-      console.error(error);
-    }
-    throw error;
-  }
+  blink1 = new Blink1();
+  blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);
+  blink1.close();
+};
+
+Plugin.prototype.setOptions = function(options){
+  this.options = options;
 };
 
 module.exports = {
-  Plugin: Plugin,
-  messageSchema: MESSAGE_SCHEMA
+  messageSchema: MESSAGE_SCHEMA,
+  optionsSchema: OPTIONS_SCHEMA,
+  Plugin: Plugin
 };

@@ -4,7 +4,7 @@
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
-    "start": "bin/meshblu-blink1",
+    "start": "node command.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
