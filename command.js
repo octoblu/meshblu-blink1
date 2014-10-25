@@ -36,9 +36,7 @@ conx.on('message', function(){
   try {
     plugin.onMessage.apply(plugin, arguments);
   } catch (error){
-    console.log(error);
-    console.error(error.message);
-    console.error(error.stack);
+    console.error(error);
   }
 });
 
