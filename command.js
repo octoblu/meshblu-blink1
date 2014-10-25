@@ -10,8 +10,12 @@ var conx = skynet.createConnection({
   token  : config.token
 });
 
-conx.on('notReady', console.error);
-conx.on('error', console.error);
+conx.on('notReady', function(error){
+  console.error('notReady', error);
+});
+conx.on('error', function(error){
+  console.error('connection error', error);
+});
 
 var plugin = new Plugin();
 
@@ -32,6 +36,7 @@ conx.on('message', function(){
   try {
     plugin.onMessage.apply(plugin, arguments);
   } catch (error){
+    console.log(error);
     console.error(error.message);
     console.error(error.stack);
   }
@@ -41,4 +46,6 @@ plugin.on('message', function(message){
   conx.message(message);
 });
 
-plugin.on('error', console.error);
+plugin.on('error', function(error){
+  console.error('plugin error', error);
+});
