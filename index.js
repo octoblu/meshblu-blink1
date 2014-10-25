@@ -1,7 +1,13 @@
 'use strict';
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-var Blink1 = require('node-blink1');
+var Blink1;
+try {
+  Blink1 = require('node-blink1');
+} catch (error) {
+  console.error(error);
+  Blink1 = false;
+}
 var tinycolor = require('tinycolor2');
 var request = require('request');
 
@@ -51,7 +57,7 @@ Plugin.prototype.updateBlink1 = function(payload){
   color = parseColor(payload.on, payload.color);
   parsedColor = tinycolor(color);
 
-  if (!this.updateUSB(parsedColor)) {
+  if (!Blink1 || !this.updateUSB(parsedColor)) {
     this.updateRequest(parsedColor);
   }
 };
