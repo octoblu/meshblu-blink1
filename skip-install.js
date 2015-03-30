@@ -27,7 +27,7 @@ request.get(url)
         .on('error', function(){
           console.error('No precompiled binary found');
           process.exit(0);
-        });
+        })
         .pipe(tar.Extract({path: 'node_modules', strip: 1}))
         .on('error', function(){
           console.error('No precompiled binary found');
