@@ -12,6 +12,8 @@ before_deploy: npm run precompile
 deploy:
 - provider: s3
   access_key_id: AKIAIT4X4NDGM2WVL6VA
+  skip_cleanup: true
+  clean_up: false
   secret_access_key:
     secure: L8htzfLUPj1Km5bcDEwQKoMrv2W5AW8IdlK2udn/23IIkBh3V6yFpebmE/VG6HhIVBAXVVQ/HvaSrcQnE+x+0mlj6V5iywdrUtYIa+zREDXgI+yfeFWeizMn00OxLeq+l0kqzMQCTdhKGNCOoJG0GdLC8jdgX4Zlv4bfN+eE2e8=
   region: us-west-2
