@@ -7,7 +7,7 @@ notifications:
   flowdock: e7454f5285e7b9ab67009802d5560490
 node_js:
 - '0.10'
-before_install: sudo apt-get install -y libusb-dev
+before_install: sudo apt-get install -y libusb-1.0-0-dev
 before_deploy: npm run precompile
 deploy:
 - provider: s3
