@@ -11,8 +11,12 @@ var getFilename = function(packageJSON){
 
 fs.mkdirpSync('build');
 var filename = getFilename(require('./package.json'));
+var destination = path.join('build', filename);
+
+console.log(destination);
 
 fstream.Reader({path: path.join(__dirname, 'node_modules'), type: "Directory"})
        .pipe(tar.Pack())
        .pipe(zlib.Gzip())
-       .pipe(fs.createWriteStream(path.join('build', filename)));
+       .pipe(fs.createWriteStream(destination));
+
