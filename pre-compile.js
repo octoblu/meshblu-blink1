@@ -11,7 +11,7 @@ var getFilename = function(packageJSON){
 
 fs.mkdirpSync('build');
 var filename = getFilename(require('./package.json'));
-var destination = path.join('build', filename);
+var destination = path.join(__dirname, 'build', filename);
 
 console.log(destination);
 
