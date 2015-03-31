@@ -21,7 +21,6 @@ var getUrl = function(packageJSON){
 };
 
 var url = getUrl(require('./package.json'));
-console.log(url);
 request.get(url)
         .pipe(zlib.Unzip())
         .on('error', function(){
