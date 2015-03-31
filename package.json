@@ -1,6 +1,6 @@
 {
   "name": "meshblu-blink1",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,8 @@
   },
   "bundledDependencies": [
     "request",
-    "tar"
+    "tar",
+    "fstream"
   ],
   "optionalDependencies": {
     "node-blink1": "^0.1.5"
