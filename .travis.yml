@@ -7,13 +7,14 @@ cache:
 node_js:
 - '0.10'
 env:
-  - REPLACE_CMD=perl -pe 's;(\\*)(\$([a-zA-Z_][a-zA-Z_0-9]*)|\$\{([a-zA-Z_][a-zA-Z_0-9]*)\})?;substr($1,0,int(length($1)/2)).($2&&length($1)%2?$2:$ENV{$3||$4});eg'
-  - S3_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
-  - secure: VY2gOnSNK1EAqS+WGVFmTGaNzQgAyrRNGumGjtdfvJMuWw+48ie+9g8tBn3jxRpuVL6iFYzbOtvXJfXFBcy39Xp1C1Nwic8kKzCxIMrJZVMaca+1I0klXThi6pbdExY4zcFWVZfhriQG4nU/DoskRiY5a37qtwP/cx/ue10i7cI=
+  global:
+    - REPLACE_REGEX='s;(\\*)(\$([a-zA-Z_][a-zA-Z_0-9]*)|\$\{([a-zA-Z_][a-zA-Z_0-9]*)\})?;substr($1,0,int(length($1)/2)).($2&&length($1)%2?$2:$ENV{$3||$4});eg'
+    - S3_ACCESS_KEY_ID=AKIAIT4X4NDGM2WVL6VA
+    - secure: VY2gOnSNK1EAqS+WGVFmTGaNzQgAyrRNGumGjtdfvJMuWw+48ie+9g8tBn3jxRpuVL6iFYzbOtvXJfXFBcy39Xp1C1Nwic8kKzCxIMrJZVMaca+1I0klXThi6pbdExY4zcFWVZfhriQG4nU/DoskRiY5a37qtwP/cx/ue10i7cI=
 after_success:
 - mkdir -p dpl_cd_upload
-- $REPLACE_CMD .kubernetes/appspec.yml.tmpl > appspec.yml
-- $REPLACE_CMD .kubernetes/meshblu-blink1-pod.yaml.tmpl > .kubernetes/meshblu-blink1-pod.yaml
+- perl -pe $REPLACE_REGEX .kubernetes/appspec.yml.tmpl > appspec.yml
+- perl -pe $REPLACE_REGEX .kubernetes/meshblu-blink1-pod.yaml.tmpl > .kubernetes/meshblu-blink1-pod.yaml
 - zip -r dpl_cd_upload/meshblu-blink1-$TRAVIS_COMMIT.zip * .kubernetes
 deploy:
 - provider: npm
