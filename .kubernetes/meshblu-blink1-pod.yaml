@@ -13,4 +13,7 @@ desiredState:
     containers:
       - name: meshblu-blink1
         image: octoblu/node-pre-compile-linux-32bit
+        env:
+          - name: NPM_PACKAGE_NAME
+            value: meshblu-blink1
 
