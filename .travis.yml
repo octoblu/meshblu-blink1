@@ -12,7 +12,7 @@ after_success:
   - mkdir -p dpl_cd_upload
   - sed "s/\$TRAVIS_COMMIT/$TRAVIS_COMMIT/g" .kubernetes/appspec.yml.tmpl > appspec.yml
   - cp .kubernetes/meshblu-blink1-pod.yaml .
-  - zip -r dpl_cd_upload/meshblu-blink1-$TRAVIS_COMMIT.zip *
+  - zip -r dpl_cd_upload/meshblu-blink1-$TRAVIS_COMMIT.zip * .kubernetes
 deploy:
 - provider: npm
   skip_cleanup: true
