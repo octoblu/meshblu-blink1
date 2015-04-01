@@ -1,4 +1,5 @@
 language: node_js
+sudo: false
 cache:
   bundler: true
   directories:
@@ -7,7 +8,11 @@ notifications:
   flowdock: e7454f5285e7b9ab67009802d5560490
 node_js:
 - '0.10'
-before_install: sudo apt-get install -y libusb-1.0-0-dev
+after_success:
+  - mkdir -p dpl_cd_upload
+  - sed "s/\$TRAVIS_COMMIT/$TRAVIS_COMMIT/g" .kubernetes/appspec.yml.tmpl > appspec.yml
+  - cp .kubernetes/meshblu-blink1-pod.yaml .
+  - zip -r dpl_cd_upload/meshblu-blink1-$TRAVIS_COMMIT.zip *
 deploy:
 - provider: npm
   skip_cleanup: true
@@ -18,3 +23,20 @@ deploy:
   on:
     tags: true
     all_branches: true
+- provider: s3
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: &1
+    secure: QcQTI2Bt77/dUDRDYvmKymHvUxiKhM+PytqxMjETaAXlKUDz7mDnQU+lOFmzEqKNx/mB62gFFMEq3jEm8I0L7YbAKfKN+ji8vo3zkJfnsUR7i2SVa267MDTxhaf7If4ZJ8KkBgoX3PtvNMIxDTfTvYBwNH+e+0I0pWjM8R0Q1DQ=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  bucket: octoblu-deploy
+  upload_dir: octoblu-kubernetes
+- provider: codedeploy
+  access_key_id: AKIAIT4X4NDGM2WVL6VA
+  secret_access_key: *1
+  bucket: octoblu-deploy
+  key: meshblu-blink1/meshblu-blink1-$TRAVIS_COMMIT.zip
+  bundle_type: zip
+  region: us-west-2
+  application: meshblu-blink1
+  deployment_group: kubernetes

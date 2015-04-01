@@ -1,0 +1,4 @@
+#!/bin/sh
+
+kubectl delete pod -lname=meshblu-blink1
+kubectl create -f meshblu-blink1-pod.yaml

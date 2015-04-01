@@ -1,0 +1,16 @@
+id: meshblu-blink1
+kind: Pod
+apiVersion: v1beta1
+labels:
+  name: meshblu-blink1
+  version: 1.0.0
+desiredState:
+  manifest:
+    version: v1beta1
+    id: meshblu-blink1
+    restartPolicy:
+      never: {}
+    containers:
+      - name: meshblu-blink1
+        image: octoblu/node-pre-compile-linux-32bit
+
