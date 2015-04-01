@@ -30,7 +30,7 @@ deploy:
   local_dir: dpl_cd_upload
   skip_cleanup: true
   bucket: octoblu-deploy
-  upload_dir: octoblu-kubernetes
+  upload_dir: meshblu-blink1
 - provider: codedeploy
   access_key_id: AKIAIT4X4NDGM2WVL6VA
   secret_access_key: *1
