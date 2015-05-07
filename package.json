@@ -4,7 +4,7 @@
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
-    "preinstall": "node skip-install.js",
+    "preinstall": "node skip-install.js; exit 0",
     "start": "node command.js",
     "test": "exit 0"
   },
