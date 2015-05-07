@@ -21,6 +21,7 @@ install:
   - node -e "console.log(process.arch);"
   - FOR /F "delims=" %%a IN ('node -e "console.log(require('./package.json').version)"') DO SET PACKAGE_VERSION=%%~a
   - SET PATH=C:\Program Files (x86)\MSBuild\12.0\bin\;%PATH%
+  - echo %PATH%
   - if "%PLATFORM%" == "x64" set PATH=C:\Python27-x64;%PATH%
   - if "%PLATFORM%" == "x64" set NODE_PLATFORM="x64"
   - if "%PLATFORM%" == "x86" SET PATH=C:\python27;%PATH%
