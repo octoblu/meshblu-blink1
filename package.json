@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "node skip-install.js",
-    "precompile": "node pre-compile.js",
     "start": "node command.js",
     "test": "exit 0"
   },
