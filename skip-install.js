@@ -16,7 +16,7 @@ var BASE_PATH = 'http://octoblu-npm.s3-website-us-west-2.amazonaws.com';
 
 var getUrl = function(packageJSON){
   var filename = [packageJSON.name, packageJSON.version, os.platform(), os.arch(), 'node-modules'].join('-') + '.tar.gz';
-  var path = packageJSON.name + '/' + filename;
+  var path = packageJSON.name + '/' + packageJSON.version + '/' + filename;
   return BASE_PATH + '/' + path;
 };
 

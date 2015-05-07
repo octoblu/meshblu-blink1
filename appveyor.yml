@@ -23,13 +23,11 @@ install:
   - SET PATH=C:\Program Files (x86)\MSBuild\12.0\bin\;%PATH%
   - if "%PLATFORM%" == "x64" set PATH=C:\Python27-x64;%PATH%
   - if "%PLATFORM%" == "x86" SET PATH=C:\python27;%PATH%
-  - SET TAG_NAME=%APPVEYOR_REPO_TAG_NAME%
-  - if "%APPVEYOR_REPO_TAG_NAME%" == "" SET TAG_NAME=%APPVEYOR_REPO_COMMIT%
   - npm install --ignore-scripts
   - npm test
   - npm install -g node-pre-compile-to-s3
   - node-pre-compile-to-s3 precompile -p "%APPVEYOR_BUILD_FOLDER%\build" "%APPVEYOR_BUILD_FOLDER%\package.json"
-  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\meshblu-blink1-%PACKAGE_VERSION%-win32-%PLATFORM%-node-modules.tar.gz"
+  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%PACKAGE_VERSION%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\meshblu-blink1-%PACKAGE_VERSION%-win32-%PLATFORM%-node-modules.tar.gz"
 
 build: off
 test: off
