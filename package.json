@@ -29,9 +29,7 @@
     "tinycolor2": "^1.0.0"
   },
   "bundledDependencies": [
-    "request",
-    "tar",
-    "fstream"
+    "request"
   ],
   "optionalDependencies": {
     "node-blink1": "^0.1.5"
