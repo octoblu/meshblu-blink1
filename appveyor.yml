@@ -19,6 +19,7 @@ install:
   - npm update -g npm
   - npm --version
   - node -e "console.log(process.arch);"
+  - FOR /F "delims=" %a IN ('node -e "console.log(require('./package.json').version)"') DO SET PACKAGE_VERSION=%~a
   - SET PATH=C:\Program Files (x86)\MSBuild\12.0\bin\;%PATH%
   - if "%PLATFORM%" == "x64" set PATH=C:\Python27-x64;%PATH%
   - if "%PLATFORM%" == "x86" SET PATH=C:\python27;%PATH%
@@ -27,8 +28,8 @@ install:
   - npm install --ignore-scripts
   - npm test
   - npm install -g node-pre-compile-to-s3
-  - node-pre-compile-to-s3 precompile -p "%APPVEYOR_BUILD_FOLDER%\build" ./package.json
-  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\node-pre-compile-to-s3-3.0.0-win32-%PLATFORM%-node-modules.tar.gz"
+  - node-pre-compile-to-s3 precompile -p "%APPVEYOR_BUILD_FOLDER%\build" "%APPVEYOR_BUILD_FOLDER%\package.json"
+  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\node-pre-compile-to-s3-%PACKAGE_VERSION%-win32-%PLATFORM%-node-modules.tar.gz"
 
 build: off
 test: off

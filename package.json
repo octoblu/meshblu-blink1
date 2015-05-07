@@ -24,11 +24,8 @@
   },
   "homepage": "https://github.com/octoblu/meshblu-blink1",
   "dependencies": {
-    "fs-extra": "^0.17.0",
-    "fstream": "^1.0.4",
     "meshblu": "^1.17.0",
     "request": "^2.46.0",
-    "tar": "^2.0.0",
     "tinycolor2": "^1.0.0"
   },
   "bundledDependencies": [
