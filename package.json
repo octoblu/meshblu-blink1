@@ -1,6 +1,6 @@
 {
   "name": "meshblu-blink1",
-  "version": "3.1.15",
+  "version": "3.1.16",
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/octoblu/meshblu-blink1",
   "dependencies": {
+    "fstream": "^1.0.4",
     "meshblu": "^1.17.0",
     "request": "^2.46.0",
     "tar": "^2.1.0",
@@ -31,7 +32,8 @@
   },
   "bundledDependencies": [
     "request",
-    "tar"
+    "tar",
+    "fstream"
   ],
   "optionalDependencies": {
     "node-blink1": "^0.1.5"
