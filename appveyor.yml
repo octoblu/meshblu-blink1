@@ -27,7 +27,7 @@ install:
   - npm install --ignore-scripts
   - npm test
   - npm install -g node-pre-compile-to-s3
-  - node-pre-compile-to-s3 build -p "%APPVEYOR_BUILD_FOLDER%\build" ./package.json
+  - node-pre-compile-to-s3 precompile -p "%APPVEYOR_BUILD_FOLDER%\build" ./package.json
   - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\node-pre-compile-to-s3-3.0.0-win32-%PLATFORM%-node-modules.tar.gz"
 
 build: off
