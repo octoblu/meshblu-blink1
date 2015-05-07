@@ -29,7 +29,7 @@ install:
   - npm test
   - npm install -g node-pre-compile-to-s3
   - node-pre-compile-to-s3 precompile -p "%APPVEYOR_BUILD_FOLDER%\build" "%APPVEYOR_BUILD_FOLDER%\package.json"
-  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\node-pre-compile-to-s3-%PACKAGE_VERSION%-win32-%PLATFORM%-node-modules.tar.gz"
+  - node-pre-compile-to-s3 upload -r "npm/meshblu-blink1/%TAG_NAME%" -b octoblu-npm "%APPVEYOR_BUILD_FOLDER%\build\meshblu-blink1-%PACKAGE_VERSION%-win32-%PLATFORM%-node-modules.tar.gz"
 
 build: off
 test: off
