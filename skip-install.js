@@ -12,7 +12,7 @@ try {
   process.exit(0);
 }
 
-var BASE_PATH = 'http://octoblu-npm.s3-website-us-west-2.amazonaws.com';
+var BASE_PATH = 'http://cdn.octoblu.com';
 
 var getUrl = function(packageJSON){
   var filename = [packageJSON.name, packageJSON.version, os.platform(), os.arch(), 'node-modules'].join('-') + '.tar.gz';
