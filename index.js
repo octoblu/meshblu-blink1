@@ -52,6 +52,10 @@ Plugin.prototype.onMessage = function(message){
   this.updateBlink1(payload);
 };
 
+Plugin.prototype.onConfig = function(device){
+  this.setOptions(device.options||{});
+}
+
 Plugin.prototype.updateBlink1 = function(payload){
   var color, parsedColor;
   color = parseColor(payload.on, payload.color);
