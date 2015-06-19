@@ -78,7 +78,10 @@ Plugin.prototype.updateRequest = function(color) {
 };
 
 Plugin.prototype.updateUSB = function(color) {
-  var rgb = color.toRgb()
+  var rgb = color.toRgb();
+  rgb.r = (rgb.a * rgb.r);
+  rgb.g = (rgb.a * rgb.g);
+  rgb.b = (rgb.a * rgb.b);
   try {
     var blink1 = new Blink1();
     blink1.fadeToRGB(0, rgb.r, rgb.g, rgb.b);

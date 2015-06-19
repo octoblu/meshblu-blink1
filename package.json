@@ -1,6 +1,6 @@
 {
   "name": "meshblu-blink1",
-  "version": "3.2.3",
+  "version": "3.3.0",
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
