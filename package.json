@@ -1,6 +1,6 @@
 {
   "name": "meshblu-blink1",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Meshblu Blink(1) connector",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/octoblu/meshblu-blink1",
   "dependencies": {
     "fstream": "^1.0.4",
-    "meshblu": "^1.17.0",
+    "meshblu": "^1.30.0",
     "request": "^2.46.0",
     "tar": "^2.1.0",
     "tinycolor2": "^1.0.0"
