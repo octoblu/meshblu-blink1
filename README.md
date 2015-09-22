@@ -1,5 +1,11 @@
 ## meshblu-blink1
 
+[![Build Status](https://travis-ci.org/octoblu/meshblu-blink1.svg?branch=master)](https://travis-ci.org/octoblu/meshblu-blink1)
+[![Code Climate](https://codeclimate.com/github/octoblu/meshblu-blink1/badges/gpa.svg)](https://codeclimate.com/github/octoblu/meshblu-blink1)
+[![Test Coverage](https://codeclimate.com/github/octoblu/meshblu-blink1/badges/coverage.svg)](https://codeclimate.com/github/octoblu/meshblu-blink1)
+[![npm version](https://badge.fury.io/js/meshblu-blink1.svg)](http://badge.fury.io/js/meshblu-blink1)
+[![Gitter](https://badges.gitter.im/octoblu/help.svg)](https://gitter.im/octoblu/help)
+
 A Meshblu connector for use in Octoblu or with other services.
 
 ### Setup Instructions
