@@ -48,6 +48,10 @@ var parseColor = function(on, color){
 };
 
 Plugin.prototype.onMessage = function(message){
+  if(!message || !message.payload) {
+    console.error('invalid message', message)
+    return;
+  }
   var payload = message.payload;
   this.updateBlink1(payload);
 };
